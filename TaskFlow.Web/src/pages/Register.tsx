@@ -22,14 +22,16 @@ export default function Register() {
             localStorage.setItem('token', response.data.token);
             navigate('/');
         } catch (err: any) {
-            console.error("Registration failed detail:", err);
+            console.error("Full Registration Error:", err);
             const data = err.response?.data;
+            const status = err.response?.status;
+
             if (Array.isArray(data)) {
                 setError(data[0]);
             } else if (err.message === "Network Error") {
-                setError("Network Error: Could not reach the server. Please check your VITE_API_URL in Vercel.");
+                setError("Network Error: Could not reach the server. Check VERCEL > Settings > Environment Variables > VITE_API_URL.");
             } else {
-                setError(err.response?.data?.message || 'Registration failed. The server might be down or the database connection is incorrect.');
+                setError(`Error ${status || ''}: ${err.response?.data?.message || 'The server returned an error. This is usually due to an incorrect Supabase connection string in Railway.'}`);
             }
         } finally {
             setLoading(false);

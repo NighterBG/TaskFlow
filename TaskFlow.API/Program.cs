@@ -71,7 +71,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", builder =>
     {
-        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+        builder.SetIsOriginAllowed(_ => true) // More robust than AllowAnyOrigin for some proxied scenarios
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .AllowCredentials(); // Often needed for auth tokens if using cookies, though we use Bearer
     });
 });
 
