@@ -1,0 +1,23 @@
+# .NET Ignore Rules
+[Bb]in/
+[Oo]bj/
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+.vscode/
+*.log
+
+# Node.js Ignore Rules
+node_modules/
+dist/
+.env
+.env.local
+.DS_Store
+
+# TaskFlow specific logs
+*.log
+build_*.log
+server.log
+client_*.log
+infra_error.log
