@@ -22,11 +22,14 @@ export default function Register() {
             localStorage.setItem('token', response.data.token);
             navigate('/');
         } catch (err: any) {
+            console.error("Registration failed detail:", err);
             const data = err.response?.data;
             if (Array.isArray(data)) {
                 setError(data[0]);
+            } else if (err.message === "Network Error") {
+                setError("Network Error: Could not reach the server. Please check your VITE_API_URL in Vercel.");
             } else {
-                setError('Registration failed. Username might be taken.');
+                setError(err.response?.data?.message || 'Registration failed. The server might be down or the database connection is incorrect.');
             }
         } finally {
             setLoading(false);
