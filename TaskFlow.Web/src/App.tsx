@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Tasks from './pages/Tasks';
+import Login from './pages/Login.tsx';
+import Register from './pages/Register.tsx';
+import Tasks from './pages/Tasks.tsx';
 
 import { ThemeProvider } from './components/ThemeProvider';
 
