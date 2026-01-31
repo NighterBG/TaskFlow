@@ -29,9 +29,9 @@ export default function Register() {
             if (Array.isArray(data)) {
                 setError(data[0]);
             } else if (err.message === "Network Error") {
-                setError("Network Error: Could not reach the server. Check VERCEL > Settings > Environment Variables > VITE_API_URL.");
+                setError("Network Error: Could not reach the server. Please ensure the backend is running and the API URL in .env is correct.");
             } else {
-                setError(`Error ${status || ''}: ${err.response?.data?.message || 'The server returned an error. This is usually due to an incorrect Supabase connection string in Railway.'}`);
+                setError(`Error ${status || ''}: ${err.response?.data?.message || 'The server returned an error. Please check the backend logs for details.'}`);
             }
         } finally {
             setLoading(false);

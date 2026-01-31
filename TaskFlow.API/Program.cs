@@ -112,9 +112,16 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");
 
+// Serve static files from wwwroot folder
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Fallback to index.html for SPA routing
+app.MapFallbackToFile("index.html");
 
 app.Run();
